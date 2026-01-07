@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
         //initilize
         rBody = GetComponent<Rigidbody2D>();
         stats = new PlayerStats();
-       int something stats.MoveSpeed = 100;
+        int something = stats.MoveSpeed;
     }
 
      void OnMove(InputValue value)
