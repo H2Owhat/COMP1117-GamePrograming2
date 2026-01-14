@@ -4,14 +4,20 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private PlayerStats stats;
 
-    
+    // inital player stats 
+
+    [SerializeField] private float initalSpeed = 5;
+
+    //private variables
+    private PlayerStats stats;
+    private Vector2 moveInput;
+
     //components
     private Rigidbody2D rBody;
 
-    //field variables
-    private Vector2 moveInput;
+   
+   
     
 
      void Awake()
@@ -19,7 +25,7 @@ public class PlayerController : MonoBehaviour
         //initilize
         rBody = GetComponent<Rigidbody2D>();
         stats = new PlayerStats();
-        int something = stats.MoveSpeed;
+        stats.MoveSpeed = initalSpeed;    
     }
 
      void OnMove(InputValue value)
@@ -34,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     void ApplyMovement()
     {
-        float velocityx = moveInput.x; 
+        float velocityx = moveInput.x * stats.MoveSpeed; 
         rBody.linearVelocity = new Vector2 (velocityx , rBody.linearVelocity.y);
     }
 }
