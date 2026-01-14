@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     // inital player stats 
 
     [SerializeField] private float initalSpeed = 5;
+    [SerializeField] private int initalHealth = 100;
 
     //private variables
     private PlayerStats stats;
@@ -24,8 +25,10 @@ public class PlayerController : MonoBehaviour
     {
         //initilize
         rBody = GetComponent<Rigidbody2D>();
-        stats = new PlayerStats();
-        stats.MoveSpeed = initalSpeed;    
+
+        stats = new PlayerStats(initalSpeed, initalHealth);
+       
+      
     }
 
      void OnMove(InputValue value)
@@ -38,9 +41,16 @@ public class PlayerController : MonoBehaviour
         ApplyMovement(); 
     }
 
-    void ApplyMovement()
+    private void ApplyMovement()
     {
         float velocityx = moveInput.x * stats.MoveSpeed; 
         rBody.linearVelocity = new Vector2 (velocityx , rBody.linearVelocity.y);
+    }
+
+    public void TakeDamage(int DamageAmount)
+    {
+        stats.CurrentHealth -= DamageAmount;
+
+        Debug.Log("player took damage");
     }
 }
