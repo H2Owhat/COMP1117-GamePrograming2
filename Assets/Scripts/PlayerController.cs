@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     //private variables
     private PlayerStats stats;
     private Vector2 moveInput;
+    private bool isDead = false;
 
     //components
     private Rigidbody2D rBody;
@@ -52,5 +53,21 @@ public class PlayerController : MonoBehaviour
         stats.CurrentHealth -= DamageAmount;
 
         Debug.Log("player took damage");
+
+        if (stats.CurrentHealth == 0)
+        {
+            isDead = true;
+
+            if (isDead = true)
+            {
+                Debug.Log("player is dead");
+            }
+        }
+        else
+        {
+             isDead = false;
+        }
+
+        
     }
 }
