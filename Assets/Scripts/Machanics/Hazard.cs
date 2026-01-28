@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Hazard : MonoBehaviour
 {
-    [SerializeField] private PlayerController playerController;
+    [SerializeField] private Player playerController;
     [SerializeField] private int damageToDeal = 100;
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -14,7 +14,7 @@ public class Hazard : MonoBehaviour
         }
         else
         {
-            Debug.Log("TESTENEMY.cs: PlayerController is null");
+            Debug.Log("TESTENEMY.cs: Player is null");
         }
     }
 }
