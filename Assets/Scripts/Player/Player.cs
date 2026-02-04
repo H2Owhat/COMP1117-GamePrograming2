@@ -18,6 +18,7 @@ public class Player : Character
     private Rigidbody2D rBody;
     private PlayerInputHandler input;
     private bool isGrounded;
+    private float currentSpeedModifier =  1f;
 
 
      protected override void Awake()
@@ -38,7 +39,7 @@ public class Player : Character
         anim.SetFloat("yVelocity", rBody.linearVelocity.y);
 
         //handle sprite flipping
-        if(input.MoveInput.x !=0)
+        if(input.MoveInput.x !=0 &&!isDead)
         {
             transform.localScale = new Vector3(Mathf.Sign(input.MoveInput.x), 1, 1);
         }
@@ -56,9 +57,11 @@ public class Player : Character
 
     private void HandleMovement()
     {
-        float horizontalVelocity = input.MoveInput.x * MoveSpeed;
+        float horizontalVelocity = input.MoveInput.x * MoveSpeed * currentSpeedModifier;
 
         rBody.linearVelocity = new Vector2(horizontalVelocity, rBody.linearVelocity.y);
+
+        currentSpeedModifier = 1f;
     }
     private void HandleJump()
     {
@@ -73,6 +76,20 @@ public class Player : Character
         rBody.linearVelocity = new Vector2(rBody.linearVelocity.x, 0);
         
         rBody.AddForce(Vector2.up *jumpForce, ForceMode2D.Impulse);
+    }
+
+    public void ApplySpeedModifier(float speedModifier)
+    {
+        currentSpeedModifier = speedModifier;
+    }
+
+    public override void Die()
+    {
+        isDead = true;
+        Debug.Log("player has died");
+
+        //player specific dead logic 
+
     }
 
     
