@@ -45,6 +45,7 @@ public class TresureChest : MonoBehaviour, Iinteractable
             {
                 Vector2 force = new Vector2(Random.Range(-1f, 1f),1.5f).normalized *launchForce;
                 gemRB.AddForce(force, ForceMode2D.Impulse);
+                
             }
         }
     }
