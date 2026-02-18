@@ -7,6 +7,11 @@ public class Gem : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private float speed = 1.5f;
 
+
+    public void DoGemBehaviour()
+    {
+        Debug.Log("<color=cyan> SPARKEL</color>");
+    }
     private void FixedUpdate()
     {
         StartCoroutine(ToPlayer());
